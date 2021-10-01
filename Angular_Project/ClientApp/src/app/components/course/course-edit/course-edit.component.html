@@ -1,0 +1,22 @@
+<div class="form-container mat-typography">
+  <form #editCourse="ngForm" (ngSubmit)="update(editCourse)" class="form-container">
+    <h3>Create new course</h3>
+    <mat-form-field class="f-w">
+      <mat-label>Course name</mat-label>
+      <input matInput name="courseName" id="courseName" [(ngModel)]="course.courseName" required #courseName="ngModel">
+      <mat-error *ngIf="courseName.pristine && courseName.invalid">Course Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="f-w">
+      <mat-label>Round</mat-label>
+      <input matInput name="round" id="round" [(ngModel)]="course.round" required #round="ngModel">
+      <mat-error *ngIf="round.touched && round.invalid">Round is required</mat-error>
+    </mat-form-field>
+    <div class="f-w">
+      <button [disabled]="editCourse.invalid" mat-raised-button type="submit" color="accent"><mat-icon>save</mat-icon> Update</button>
+    </div>
+    <div class="f-w">
+      <a mat-flat-button [routerLink]="['/courses']"><mat-icon style="margin-right:5px;">undo</mat-icon> Back to list</a>
+    </div>
+  </form>
+</div>
+

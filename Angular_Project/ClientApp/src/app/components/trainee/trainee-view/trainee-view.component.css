@@ -1,0 +1,26 @@
+.card-container {
+  box-sizing: border-box;
+  width: calc(100% - 30px);
+  margin: 25px auto 10px auto;
+}
+
+.table-container {
+  box-sizing: border-box;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+}
+
+.row-image {
+  max-height: 80px;
+  max-width: 80px;
+  overflow: hidden;
+  border: solid 1px #FFFFFF;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transition: -webkit-box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+}
+.mat-tab-header{
+    font-size:1rem;
+    color:mediumvioletred;
+}

@@ -1,0 +1,61 @@
+<form class="form-container" [formGroup]="traineeForm" (submit)="update()">
+  <div class="f-w">
+    <h3>Edit Trainee Info</h3>
+  </div>
+  <mat-form-field class="f-w">
+    <mat-label>Trainee Name</mat-label>
+    <input matInput formControlName="traineeName">
+    <mat-error *ngIf="f.traineeName.touched && f.traineeName.errors?.required">Trainee name is required</mat-error>
+    <mat-error *ngIf="f.traineeName.touched && f.traineeName.errors?.maxlength">Trainee name can be upto 40 characters</mat-error>
+  </mat-form-field>
+  <mat-form-field class="f-w">
+    <mat-label>E-mail</mat-label>
+    <input matInput formControlName="email">
+    <mat-error *ngIf="f.email.touched && f.email.errors">E-mail is required</mat-error>
+  </mat-form-field>
+  <mat-form-field class="f-w">
+    <mat-label>Admit Date</mat-label>
+    <input matInput formControlName="admitDate" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="f.admitDate.touched && f.admitDate.errors">Admit date is required</mat-error>
+  </mat-form-field>
+  <div class="mat-form-field f-w">
+    <mat-label style="margin-right:16px">Gender</mat-label>
+    <mat-radio-group formControlName="gender" aria-label="Select an option">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="f.gender.touched && f.gender.errors">Gender is required</mat-error>
+  </div>
+  <div class="row-pic">
+    <img *ngIf="trainee" class="f-pic" src="/Uploads/{{trainee?.picture}}" />
+    <mat-form-field appearance="standard" class="f-w-pic">
+      <mat-label>Picture</mat-label>
+      <ngx-mat-file-input formControlName="picture" [accept]="'image/*'" (change)="onChange($event)"></ngx-mat-file-input>
+      <mat-icon matSuffix>insert_photo</mat-icon>
+      <mat-error *ngIf="f.picture.touched && f.picture.errors">Picture is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <mat-form-field class="f-w">
+    <mat-label>Course Name</mat-label>
+    <mat-select formControlName="courseId">
+      <mat-option value="">None</mat-option>
+      <mat-option *ngFor="let c of courses" [value]="c.courseId">
+        {{c.courseName}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="f.courseId.touched && f.courseId.errors">Course Name is required</mat-error>
+
+  </mat-form-field>
+
+  <div class="f-w">
+    <button [disabled]="traineeForm.invalid" mat-raised-button type="submit" color="primary"><mat-icon>save</mat-icon> Update</button>
+  </div>
+  <div class="f-w">
+    <a mat-flat-button [routerLink]="['/trainees']"><mat-icon style="margin-right:5px;">undo</mat-icon> Back to list</a>
+  </div>
+</form>
+

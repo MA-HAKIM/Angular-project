@@ -1,0 +1,54 @@
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title class="card-title">
+      Trainees
+    </mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      Trainees List
+    </mat-card-subtitle>
+    <span class="filler"></span>
+    <a [routerLink]="['/trainee-add']" mat-mini-fab color="primary"><mat-icon>add</mat-icon></a>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="traineeName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Trainee Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.traineeName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="picture">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Picture</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <img class="row-image" src="/Uploads/{{element.picture}}" />
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">E-mail</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.email }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="admitDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Admit Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.admitDate | date: 'yyyy-MMM-dd' }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="course">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Course Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{getCourseName(element.courseId) }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="gender">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Gender</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.gender }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="mat-tab-header">Edit/Delete</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" [routerLink]="['/trainee-edit', element.traineeId]"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="confirmDelete(element)"><mat-icon>delete</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnList"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnList;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

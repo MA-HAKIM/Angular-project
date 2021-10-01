@@ -1,0 +1,39 @@
+<mat-card class="card-container">
+  <mat-card-header>
+    <mat-card-title class="card-title">
+      All Courses
+    </mat-card-title>
+    <mat-card-subtitle class="card-subtitle">
+      Courses List
+    </mat-card-subtitle>
+    <span class="filler"></span>
+    <a [routerLink]="['/course-add']" mat-mini-fab color="primary"><mat-icon>add</mat-icon></a>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="table-container">
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="courseName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Course Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.courseName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="round">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-tab-header">Round</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.round }}</mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="mat-tab-header">Edit/Delete</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" [routerLink]="['/course-edit', element.courseId]"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="confirmDelete(element)"><mat-icon>delete</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnList"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnList;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, 40]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

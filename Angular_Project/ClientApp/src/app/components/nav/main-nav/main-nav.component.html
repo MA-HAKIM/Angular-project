@@ -1,0 +1,29 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      
+      [opened]=" false">
+    <mat-toolbar style="background-color: grey; color: white;">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['home']" class="linkColor"><mat-icon style="margin-right:10px;">home</mat-icon>Home</a>
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['courses']" class="linkColor"><mat-icon style="margin-right:10px;">dashboard</mat-icon>Courses</a>
+      <a mat-list-item (click)="drawer.toggle()" [routerLink]="['trainees']" class="linkColor"><mat-icon style="margin-right:10px;">people</mat-icon>Trainees</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: grey; color: white;">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span style="margin-left:20px">Course & Trainee App</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div style="margin:10px 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

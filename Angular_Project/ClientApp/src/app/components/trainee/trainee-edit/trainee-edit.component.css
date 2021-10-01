@@ -1,0 +1,36 @@
+.form-container {
+  width: 65%;
+  margin: 5px auto 10px auto;
+}
+
+.f-w {
+  width: 100%;
+  margin-bottom: .5rem;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.row-pic {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center
+}
+
+.f-w-pic {
+  width: calc(100% - 65px);
+}
+
+.f-pic {
+  max-height: 40px;
+  max-width: 40px;
+  overflow: hidden;
+  border: solid 1px #FFFFFF;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transition: -webkit-box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+}
